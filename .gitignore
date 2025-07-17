@@ -9,3 +9,6 @@ build
 
 # SAM (S/W Architecture Maturity) directory
 .sam-dir
+.idea/
+*.log
+.env
