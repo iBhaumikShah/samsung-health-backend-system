@@ -67,6 +67,8 @@ services:
       - ./mongodb.properties:/etc/trino/catalog/mongodb.properties
     depends_on:
       - mongo
+    ports:
+      - 8090:8080
     networks:
       - app_network
     restart: unless-stopped
