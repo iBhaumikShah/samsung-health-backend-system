@@ -141,10 +141,14 @@ tasks.named<Test>("test") {
 
 tasks.test {
     ignoreFailures = true
+    // Allow skipping tests by passing -PskipTests flag
+    onlyIf { !project.hasProperty("skipTests") }
 }
 
 tasks.jacocoTestReport {
     dependsOn(tasks.test)
+    // Skip jacoco report if tests are skipped
+    onlyIf { !project.hasProperty("skipTests") }
     reports {
         xml.required.set(true)
         html.required.set(true)
@@ -163,6 +167,8 @@ tasks.jacocoTestReport {
 }
 
 tasks.jacocoTestCoverageVerification {
+    // Skip coverage verification if tests are skipped
+    onlyIf { !project.hasProperty("skipTests") }
     violationRules {
         rule {
             limit {
